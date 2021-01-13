@@ -1,0 +1,19 @@
+current directory: /var/www/html/help-service/backend/vendor/bundle/ruby/2.7.0/gems/byebug-11.1.3/ext/byebug
+/home/diego/.rvm/rubies/ruby-2.7.2/bin/ruby -I /home/diego/.rvm/rubies/ruby-2.7.2/lib/ruby/2.7.0 -r ./siteconf20210112-15792-1ppcv9c.rb extconf.rb
+creating Makefile
+
+current directory: /var/www/html/help-service/backend/vendor/bundle/ruby/2.7.0/gems/byebug-11.1.3/ext/byebug
+make "DESTDIR=" clean
+
+current directory: /var/www/html/help-service/backend/vendor/bundle/ruby/2.7.0/gems/byebug-11.1.3/ext/byebug
+make "DESTDIR="
+compiling breakpoint.c
+compiling byebug.c
+compiling context.c
+compiling locker.c
+compiling threads.c
+linking shared-object byebug/byebug.so
+
+current directory: /var/www/html/help-service/backend/vendor/bundle/ruby/2.7.0/gems/byebug-11.1.3/ext/byebug
+make "DESTDIR=" install
+/usr/bin/install -m 0755 byebug.so ./.gem.20210112-15792-vheqxs/byebug
