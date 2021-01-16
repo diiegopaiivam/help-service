@@ -17,7 +17,8 @@ profession = Profession.create(
         { title: 'Designer Gráfico' },
         { title: 'Chefe de Cozinha' },
         { title: 'Borracheiro' },
-        { title: 'Montador de Móveis'}
+        { title: 'Montador de Móveis'},
+        
     ]
 )
 #   Character.create(name: 'Luke', movie: movies.first)
