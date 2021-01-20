@@ -1,5 +1,6 @@
 class Api::V1::EmployeesController < Api::V1::ApiController
     before_action :set_employee, only: [:show, :update, :destroy]
+    
 
     def index
         @employeers = Employee.includes(:profession).page(params[:page])
@@ -25,6 +26,7 @@ class Api::V1::EmployeesController < Api::V1::ApiController
         else 
             render json: @employee.errors, status: :unprocessable_entity
         end
+
     end
 
     def destroy 
@@ -37,6 +39,6 @@ class Api::V1::EmployeesController < Api::V1::ApiController
         end
 
         def set_employee
-            @employee = Employee.find([params[:id]])
+            @employee = Employee.find_by([params[:id]])
         end
 end

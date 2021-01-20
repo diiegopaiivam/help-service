@@ -14,7 +14,7 @@ class Employee < ApplicationRecord
   validates_presence_of :email, message: 'attribute is required and unic'
   validates_presence_of :phone, message: 'attribute is required'
 
-  validates_length_of :phone, minimum: 11, message: 'attribute have 11 numbers'
+  validates_length_of :phone, minimum: 10, message: 'attribute have 11 numbers'
 
   validates_uniqueness_of :email, message: 'attribute is unic'
   validates_uniqueness_of :phone, message: 'attribute is unic'

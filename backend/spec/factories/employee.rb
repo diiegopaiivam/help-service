@@ -4,8 +4,8 @@ FactoryBot.define do
         last_name { FFaker::Name.last_name }
         phone { FFaker::PhoneNumberBR.phone_number }
         email { FFaker::Internet.email }
-        latitude { FFaker::Geolocation.lat }
-        longitude { FFaker::Geolocation.lng }
+        latitude { FFaker::Geolocation.lat.to_s }
+        longitude { FFaker::Geolocation.lng.to_s }
         profession_id { FFaker::Random.rand(1..13) }
     end
 end
