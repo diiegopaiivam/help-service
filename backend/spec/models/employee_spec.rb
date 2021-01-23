@@ -10,6 +10,8 @@ RSpec.describe Employee, :type => :model do
             it "not possible create more one employee with only email" do
                 expect(employee2).to_not be_valid
             end
+
+
         end
 
         context 'with employee valid' do

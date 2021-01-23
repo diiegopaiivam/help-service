@@ -42,5 +42,19 @@ RSpec.describe "Api::V1::Employees", type: :request do
 
     end
 
+    describe "DELETE /employees" do 
+        context "when the employee exists" do
+
+            let(:employee) { create(:employee) }
+            before(:each) { delete "/api/v1/employees/#{employee.id}" }
+
+            it "return status code 200" do
+                expect(response).to have_http_status(204)
+            end
+
+
+        end
+    end
+
 
 end
