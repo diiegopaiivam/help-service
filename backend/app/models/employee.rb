@@ -3,6 +3,9 @@ class Employee < ApplicationRecord
   has_many :comment
   has_many :rating
 
+  #imageuse
+  has_one_attached :image
+
   # Paginação 
   paginates_per 10
 

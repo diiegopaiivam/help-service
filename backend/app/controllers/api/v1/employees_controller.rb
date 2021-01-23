@@ -3,7 +3,7 @@ class Api::V1::EmployeesController < Api::V1::ApiController
     
 
     def index
-        @employeers = Employee.includes(:profession).page(params[:page])
+        @employeers = Employee.all.page(params[:page])
         render json: @employeers
     end
 
@@ -36,7 +36,7 @@ class Api::V1::EmployeesController < Api::V1::ApiController
 
     private 
         def employee_params
-            params.require(:employee).permit(:first_name, :last_name, :email, :phone, :latitude, :longitude, :profession_id)
+            params.require(:employee).permit(:first_name, :last_name, :email, :phone, :image, :latitude, :longitude, :profession_id)
         end
 
         def set_employee

@@ -1,4 +1,6 @@
 class Api::V1::CommentsController < Api::V1::ApiController
+  before_action :set_comment, only: [:show, :update, :destroy]
+
   def index
   end
 

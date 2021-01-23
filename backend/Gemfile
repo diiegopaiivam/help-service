@@ -18,7 +18,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'kaminari'
 gem 'rack-cors'
 gem 'tty-spinner'
- 	
+gem 'active_model_serializers'
 gem 'rack-attack'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
