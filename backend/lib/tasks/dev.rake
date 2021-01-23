@@ -4,11 +4,13 @@ namespace :dev do
   task setup: :environment do
     if Rails.env.development?
       show_spinner("Create anymore employees ") { %x(rails dev:add_more_employees) }
+      show_spinner("Create comments for the Employeers") { %x(rails dev:add_comments_employees) }
     else 
       puts "Você não está em ambiente de desenvolvimento"
     end
   end
 
+  # Criando vários trabalhadores
   desc "Create anymore employees"
   task add_more_employees: :environment do
     20.times do |i|
@@ -23,6 +25,20 @@ namespace :dev do
       )
     end
   end
+
+  # Criando comentários para os trabalhadores
+  desc "Create comments for the Employeers"
+  task add_comments_employees: :environment do
+    Employee.all.each do |employee| 
+      rand(5..10).times do |i| #Cria pelo menos de 5 a 10 comentários por trabalhador
+        Comment.create!(
+          description: FFaker::Lorem.paragraph,
+          employee_id: employee.id
+        )
+      end 
+    end 
+  end
+
     
   private
     def show_spinner(msg_start, msg_end = "Concluído!")
@@ -31,6 +47,7 @@ namespace :dev do
       yield
       spinner.success("(#{msg_end})")
     end
+
 
       
 end
