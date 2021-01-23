@@ -1,5 +1,5 @@
 class Api::V1::EmployeesController < Api::V1::ApiController
-    before_action :set_employee, only: [:show, :update, :destroy]
+    before_action :set_employee, only: [:update, :destroy]
     
 
     def index
@@ -8,6 +8,7 @@ class Api::V1::EmployeesController < Api::V1::ApiController
     end
 
     def show 
+        @employee = Employee.includes(:comment).find(params[:id])
         render json: @employee
     end
 
@@ -39,6 +40,6 @@ class Api::V1::EmployeesController < Api::V1::ApiController
         end
 
         def set_employee
-            @employee = Employee.find_by([params[:id]])
+            @employee = Employee.find(params[:id])
         end
 end
