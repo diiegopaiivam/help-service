@@ -1,19 +1,25 @@
 class Api::V1::CommentsController < Api::V1::ApiController
-  before_action :set_comment, only: [:show, :update, :destroy]
-
-  def index
-  end
-
-  def show
-  end
+  before_action :set_comment, only: [ :update, :destroy]
 
   def create
+    @comment = Comment.new(comment_params)
+    if @comment.save
+      render json: @comment
+    else 
+      render json: @comment.errors, status: :unprocessable_entity
+    end
   end
 
   def update
+    if @comment.update
+      render json: @comment
+    else 
+      render json: @comment.errors, status: :unprocessable_entity
+    end
   end
 
   def destroy
+    @comment.destroy
   end
 
   private 

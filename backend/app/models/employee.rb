@@ -1,7 +1,7 @@
 class Employee < ApplicationRecord
   belongs_to :profession
-  has_many :comment
-  has_many :rating
+  has_many :comments
+  has_many :ratings
 
   #imageuse
   has_one_attached :image

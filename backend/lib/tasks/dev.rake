@@ -9,6 +9,7 @@ namespace :dev do
       show_spinner("Create Professions") { %x(rails db:seed) }
       show_spinner("Create anymore employees ") { %x(rails dev:add_more_employees) }
       show_spinner("Create comments for the Employeers") { %x(rails dev:add_comments_employees) }
+      show_spinner("Generate ratings for the Employeers") { %x(rails dev:add_ratings_employees) }
     else 
       puts "Você não está em ambiente de desenvolvimento"
     end
@@ -41,6 +42,19 @@ namespace :dev do
         )
       end 
     end 
+  end
+
+  # Gerar Classificação para os trabalhadores
+  desc "Generate ratings for the Employeers"
+  task add_ratings_employees: :environment do
+    Employee.all.each do |employee| 
+      rand(10..15).times do |i| 
+        Rating.create!(
+          classification: FFaker::Random.rand(1..10),
+          employee_id: employee.id
+        )
+      end 
+    end
   end
 
     

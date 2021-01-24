@@ -1,14 +1,14 @@
 class Api::V1::EmployeesController < Api::V1::ApiController
     before_action :set_employee, only: [:update, :destroy]
     
-
     def index
-        @employeers = Employee.all.page(params[:page])
+        @employeers = Employee.includes(:comments, :ratings).page(params[:page])
         render json: @employeers
+        #render 'employees/index.json.jbuilder'
     end
 
     def show 
-        @employee = Employee.includes(:comment).find(params[:id])
+        @employee = Employee.includes(:comments, :ratings).find(params[:id])
         render json: @employee
     end
 
