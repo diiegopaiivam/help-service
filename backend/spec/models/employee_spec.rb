@@ -1,6 +1,8 @@
 require 'rails_helper' 
 
+
 RSpec.describe Employee, :type => :model do 
+    Rails.application.load_seed #Carrega os dados de seed
     describe 'Validations with Employeers' do
         context 'with invalid employee' do
             let(:employee) { build(:employee, email: 'diiegopaiivam@gmail.com') }
@@ -15,6 +17,7 @@ RSpec.describe Employee, :type => :model do
         end
 
         context 'with employee valid' do
+
             let(:employee) { build(:employee) }
             
             it 'is valid' do

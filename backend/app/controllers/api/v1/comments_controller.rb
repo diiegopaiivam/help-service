@@ -1,6 +1,7 @@
 class Api::V1::CommentsController < Api::V1::ApiController
   before_action :set_comment, only: [ :update, :destroy]
 
+
   def create
     @comment = Comment.new(comment_params)
     if @comment.save
@@ -28,6 +29,6 @@ class Api::V1::CommentsController < Api::V1::ApiController
     end
 
     def set_comment
-      @comment = Comment.find_by([params.id])
+      @comment = Comment.find(params[:id])
     end 
 end

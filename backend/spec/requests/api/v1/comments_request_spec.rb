@@ -2,32 +2,32 @@ require 'rails_helper'
 
 RSpec.describe "Api::V1::Comments", type: :request do
 
-  describe "GET /index" do
-    it "returns http success" do
-      get "/api/v1/comments/index"
-      expect(response).to have_http_status(:success)
+
+  context "when the comment exists" do 
+
+    let(:comment) { create(:comment) }
+    let(:comment_attributes) { attributes_for(:comment) }
+
+    before(:each) { put "/api/v1/comments/#{comment.id}", params: { employee: comment_attributes} }
+
+    it "return status code 200" do 
+        expect(response).to have_http_status(200)
     end
+
   end
 
-  describe "GET /show" do
-    it "returns http success" do
-      get "/api/v1/comments/show"
-      expect(response).to have_http_status(:success)
-    end
-  end
 
-  describe "GET /update" do
-    it "returns http success" do
-      get "/api/v1/comments/update"
-      expect(response).to have_http_status(:success)
-    end
-  end
+  context "when the comments exists" do
+    
 
-  describe "GET /destroy" do
-    it "returns http success" do
-      get "/api/v1/comments/destroy"
-      expect(response).to have_http_status(:success)
+    let(:comment) { create(:comment) }
+    before(:each) { delete "/api/v1/comments/#{comment.id}" }
+
+    it "return status code 200" do
+        expect(response).to have_http_status(204)
     end
-  end
+
+
+end
 
 end
