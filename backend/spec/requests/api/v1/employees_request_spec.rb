@@ -10,20 +10,14 @@ RSpec.describe "Api::V1::Employees", type: :request do
 
     describe "POST /employees" do
         context "when it has valid parameters" do
+
+            let(:employee_attributes) { attributes_for(:employee) }
             it "creates the employee with correct attributes" do
-                employee_attributes = FactoryBot.attributes_for(:employee)
                 post api_v1_employees_path, params: { employee: employee_attributes }
                 expect(Employee.last).to have_attributes(employee_attributes)
             end
         end
 
-        context "when it has no valid parameters" do
-            it "does not create employee" do
-                expect{ 
-                    post api_v1_employees_path, params: { employee: { first_name: '', last_name: '', email: '', phone: '', latitude: '', longitude: '', profession_id: '', image: '' }}
-                }.to_not change(Employee, :count)
-            end
-        end
     end
 
     describe "PUT /employees" do

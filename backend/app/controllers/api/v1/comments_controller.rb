@@ -12,7 +12,7 @@ class Api::V1::CommentsController < Api::V1::ApiController
   end
 
   def update
-    if @comment.update
+    if @comment.update(comment_params)
       render json: @comment
     else 
       render json: @comment.errors, status: :unprocessable_entity

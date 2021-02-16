@@ -8,7 +8,7 @@ RSpec.describe "Api::V1::Comments", type: :request do
     let(:comment) { create(:comment) }
     let(:comment_attributes) { attributes_for(:comment) }
 
-    before(:each) { put "/api/v1/comments/#{comment.id}", params: { employee: comment_attributes} }
+    before(:each) { patch "/api/v1/comments/#{comment.id}", params: { comment: comment_attributes} }
 
     it "return status code 200" do 
         expect(response).to have_http_status(200)
