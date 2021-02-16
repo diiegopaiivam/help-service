@@ -5,7 +5,7 @@ class Api::V1::CommentsController < Api::V1::ApiController
   def create
     @comment = Comment.new(comment_params)
     if @comment.save
-      render json: @comment
+      render json: @comment, status: :created
     else 
       render json: @comment.errors, status: :unprocessable_entity
     end

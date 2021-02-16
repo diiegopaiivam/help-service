@@ -16,6 +16,11 @@ RSpec.describe "Api::V1::Employees", type: :request do
                 post api_v1_employees_path, params: { employee: employee_attributes }
                 expect(Employee.last).to have_attributes(employee_attributes)
             end
+
+            it "created the employee and return http status 201" do
+                post api_v1_employees_path, params: { employee: employee_attributes }
+                expect(response).to have_http_status(201)
+            end 
         end
 
         context "when it has invalid parameters" do
