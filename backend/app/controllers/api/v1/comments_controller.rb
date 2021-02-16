@@ -30,5 +30,7 @@ class Api::V1::CommentsController < Api::V1::ApiController
 
     def set_comment
       @comment = Comment.find(params[:id])
+      rescue ActiveRecord::RecordNotFound => e
+        render json: { message: e.message }, status: :not_found
     end 
 end
