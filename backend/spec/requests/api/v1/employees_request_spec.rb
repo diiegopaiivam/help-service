@@ -18,6 +18,15 @@ RSpec.describe "Api::V1::Employees", type: :request do
             end
         end
 
+        context "when it has invalid parameters" do
+            it "does not create employee" do
+                expect{
+                    post api_v1_employees_path, params: { employee: { :first_name => nil, :last_name => nil, :phone => nil, 
+                        :email => nil, :latitude => nil, :longitude => nil }}
+                }.to_not change(Employee, :count)
+            end
+        end
+
     end
 
     describe "PUT /employees" do
@@ -32,6 +41,24 @@ RSpec.describe "Api::V1::Employees", type: :request do
                 expect(response).to have_http_status(200)
             end
 
+            it "updates the employee" do
+                expect(employee.reload).to have_attributes(employee_attributes)
+            end
+
+
+        end
+
+        context "when the employee does not exists" do
+            let(:employee_attributes) { attributes_for(:employee) }
+            before(:each) { patch "/api/v1/employees/0", params: { employee: employee_attributes } }
+
+            it "return status code 404" do
+                expect(response).to have_http_status(404)
+            end
+
+            it "return a not found message" do
+                expect(response.body).to match(/Couldn't find Employee/)
+            end
         end
 
     end
@@ -42,11 +69,26 @@ RSpec.describe "Api::V1::Employees", type: :request do
             let(:employee) { create(:employee) }
             before(:each) { delete "/api/v1/employees/#{employee.id}" }
 
-            it "return status code 200" do
+            it "return status code 204" do
                 expect(response).to have_http_status(204)
             end
 
+            it "destroy the record" do
+                expect { employee.reload }.to raise_error ActiveRecord::RecordNotFound
+            end
 
+        end
+
+        context "when the employee does not exists" do
+            before(:each) { delete "/api/v1/employees/0" }
+
+            it "return status code 404" do
+                expect(response).to have_http_status(404)
+            end
+
+            it "return a not found message" do
+                expect(response.body).to match(/Couldn't find Employee/)
+            end
         end
     end
 

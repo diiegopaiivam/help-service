@@ -23,7 +23,7 @@ class Api::V1::EmployeesController < Api::V1::ApiController
 
     def update
         if @employee.update(employee_params)
-            render json: @employee
+            render json: @employee, status: :ok
         else 
             render json: @employee.errors, status: :unprocessable_entity
         end
@@ -32,6 +32,7 @@ class Api::V1::EmployeesController < Api::V1::ApiController
 
     def destroy 
         @employee.destroy
+        head 204
     end
 
     private 
@@ -41,5 +42,7 @@ class Api::V1::EmployeesController < Api::V1::ApiController
 
         def set_employee
             @employee = Employee.find(params[:id])
+            rescue ActiveRecord::RecordNotFound => e
+                render json: { message: e.message }, status: :not_found
         end
 end
