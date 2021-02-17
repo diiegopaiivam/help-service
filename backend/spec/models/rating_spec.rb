@@ -28,4 +28,5 @@ RSpec.describe Rating, :type => :model do
       end
     end
   end
+
 end
