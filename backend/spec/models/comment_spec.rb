@@ -19,7 +19,7 @@ RSpec.describe Comment, :type => :model do
     end
 
     context 'with comment valid' do
-      let(:comment) { build(:comment) }
+      let(:comment) { create(:comment) }
       it 'is valid' do
         expect(comment).to be_valid
       end
